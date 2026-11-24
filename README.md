@@ -53,7 +53,7 @@ npx expo start
 
 **In der Cloud (Expo-Konto nötig):** `npx eas-cli@latest build -p android --profile preview`
 
-**Lokal (Android-SDK + JDK 17+ nötig):**
+**Lokal (Android-SDK und JDK 17 nötig – das React-Native-Gradle-Plugin verlangt genau Java 17):**
 
 ```bash
 npx expo prebuild --platform android      # erzeugt den Ordner android/ (nicht im Git)
