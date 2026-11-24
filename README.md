@@ -49,8 +49,21 @@ npx expo start
 - **Im Browser:** im Terminal `w` drücken (oder `npm run web`).
 - **Android-Emulator / iOS-Simulator:** `a` bzw. `i` drücken.
 
-Eine installierbare App (APK / App Store) lässt sich mit [EAS Build](https://docs.expo.dev/build/introduction/) erstellen:
-`npx eas-cli@latest build -p android --profile preview`.
+### Android-APK bauen
+
+**In der Cloud (Expo-Konto nötig):** `npx eas-cli@latest build -p android --profile preview`
+
+**Lokal (Android-SDK + JDK 17+ nötig):**
+
+```bash
+npx expo prebuild --platform android      # erzeugt den Ordner android/ (nicht im Git)
+cd android
+./gradlew assembleRelease -PreactNativeArchitectures=arm64-v8a,armeabi-v7a
+# -> android/app/build/outputs/apk/release/app-release.apk
+```
+
+Die APK aufs Handy kopieren, antippen und „Installation aus unbekannten Quellen“ erlauben.
+Hinweis: Die so gebaute APK ist mit dem Debug-Schlüssel signiert – gut zum Selbst-Installieren, nicht für den Play Store.
 
 ## Entwicklung
 
