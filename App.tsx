@@ -7,13 +7,13 @@ import { MatchScreen } from './src/screens/MatchScreen';
 import { StatsScreen } from './src/screens/StatsScreen';
 import { TeamScreen } from './src/screens/TeamScreen';
 import { StoreProvider, useStore } from './src/state/store';
-import { colors } from './src/theme';
+import { colors, icons } from './src/theme';
 
 type Tab = 'team' | 'match' | 'stats';
 
 const TABS: { key: Tab; icon: string; label: string }[] = [
   { key: 'team', icon: '👥', label: 'Team' },
-  { key: 'match', icon: '🏐', label: 'Spiel' },
+  { key: 'match', icon: icons.ball, label: 'Spiel' },
   { key: 'stats', icon: '📊', label: 'Statistik' },
 ];
 
@@ -42,7 +42,7 @@ function Main() {
     <SafeAreaView style={styles.root} edges={['top', 'left', 'right']}>
       <StatusBar style="light" />
       <View style={styles.appBar}>
-        <Text style={styles.appTitle}>🏐 Volleyball Scout</Text>
+        <Text style={styles.appTitle}>{icons.ball} Volleyball Scout</Text>
       </View>
       <View style={styles.content}>
         {!state.loaded ? (

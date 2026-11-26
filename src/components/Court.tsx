@@ -2,7 +2,7 @@ import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { COURT_LAYOUT, POSITION_LABELS } from '../logic/match';
-import { colors } from '../theme';
+import { colors, icons } from '../theme';
 import type { Player } from '../types';
 
 export interface CourtProps {
@@ -66,7 +66,7 @@ export function Court({
                   )}
                   {isServer && (
                     <View style={styles.ball}>
-                      <Text style={styles.ballText}>🏐</Text>
+                      <Text style={styles.ballText}>{icons.ball}</Text>
                     </View>
                   )}
                 </View>

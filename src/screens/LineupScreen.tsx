@@ -5,7 +5,7 @@ import { Court } from '../components/Court';
 import { Button, Card, Chip, confirm, SectionTitle, Sheet } from '../components/ui';
 import { courtPlayers, POSITION_LABELS } from '../logic/match';
 import { useStore } from '../state/store';
-import { colors, radius } from '../theme';
+import { colors, icons, radius } from '../theme';
 import type { Player, Team } from '../types';
 
 type Slots = (string | null)[];
@@ -110,8 +110,8 @@ export function LineupScreen({ onDone, onCancel }: { onDone: () => void; onCance
       <Card style={styles.mt}>
         <SectionTitle>Erster Aufschlag</SectionTitle>
         <View style={styles.chips}>
-          <Chip label="🏐 Wir" selected={serving === 'us'} onPress={() => setServing('us')} color={colors.us} />
-          <Chip label={`🏐 ${match.opponent}`} selected={serving === 'them'} onPress={() => setServing('them')} color={colors.them} />
+          <Chip label={`${icons.ball} Wir`} selected={serving === 'us'} onPress={() => setServing('us')} color={colors.us} />
+          <Chip label={`${icons.ball} ${match.opponent}`} selected={serving === 'them'} onPress={() => setServing('them')} color={colors.them} />
         </View>
         <Text style={styles.small}>
           {serving === 'us'

@@ -7,6 +7,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  useWindowDimensions,
   View,
   type StyleProp,
   type TextStyle,
@@ -118,10 +119,12 @@ export function Sheet({
   children: React.ReactNode;
 }) {
   const insets = useSafeAreaInsets();
+  // Fester Pixelwert statt '85%': Die Layout-Engine von RN 0.72 macht das Sheet mit Prozentwert zu niedrig.
+  const { height } = useWindowDimensions();
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose} accessibilityLabel="Schließen" />
-      <View style={[styles.sheet, { paddingBottom: 16 + insets.bottom }]}>
+      <View style={[styles.sheet, { maxHeight: height * 0.85, paddingBottom: 16 + insets.bottom }]}>
         <View style={styles.sheetHeader}>
           <Text style={styles.sheetTitle}>{title}</Text>
           <Pressable onPress={onClose} hitSlop={12} accessibilityRole="button" accessibilityLabel="Schließen">

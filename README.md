@@ -4,6 +4,45 @@ Eine einfache App (React Native + Expo) zum Mitschreiben von Volleyballspielen:
 Spieler mit Nummer anlegen, Aufstellung festlegen, Punkte und Fehler mit einem Tipp eintragen –
 die App kümmert sich automatisch um **Aufschlag, Rotation, Libero, Satz- und Spielende**.
 
+## Tablet-Version für Android 5 (dieser Branch: `tablet-android5`)
+
+Dieser Branch ist eine Variante für ein altes Tablet mit **Android 5.1** (JTY F888, MediaTek MT6580, 32-Bit-ARM).
+Der Hauptbranch nutzt Expo SDK 58 und braucht mindestens Android 7. Hier läuft die App deshalb auf
+**Expo SDK 49** (React Native 0.72, React 18), der letzten Expo-Version mit Android 5 (minSdk 21).
+Der App-Code ist derselbe, nur die Paketversionen sind älter.
+
+- Expo Go gibt es für Android 5 nicht. Die App kommt nur als APK aufs Tablet.
+- Zum Bauen braucht es **JDK 17**: Gradle 8.0.1 (aus SDK 49) läuft nicht mit Java 21.
+- Der C++-Teil wird nur für `armeabi-v7a` gebaut, die Architektur des Tablets.
+- Das Tablet kennt die Emojis 🏐 und 🛡 nicht. Die App zeigt dort ⚪ und 🙌 (siehe `icons` in `src/theme.ts`).
+
+```powershell
+npx expo prebuild --platform android --clean
+cd android
+$env:JAVA_HOME = "$env:USERPROFILE\.jdks\jdk-17.0.21.1+2"
+.\gradlew.bat assembleRelease -PreactNativeArchitectures=armeabi-v7a
+adb install -r app\build\outputs\apk\release\app-release.apk
+```
+
+**Fehler `ninja: error: manifest 'build.ninja' still dirty after 100 tries`:** Der Projektpfad ist zu lang
+(ninja aus SDK 49 kann keine Pfade über 260 Zeichen lesen). Dann das Projekt auf einen Laufwerksbuchstaben legen
+und von dort bauen, danach wieder lösen:
+
+```powershell
+subst V: "C:\Pfad\zum\Projekt"
+cd V:\android
+.\gradlew.bat assembleRelease -PreactNativeArchitectures=armeabi-v7a
+subst V: /D
+```
+
+**Änderungen vom Hauptbranch übernehmen:** den Hauptbranch hier hineinmergen. Bei Konflikten in
+`package.json` und `package-lock.json` die SDK-49-Versionen behalten, danach `npm install` und
+`npx expo install --check`. Neue Bibliotheken aus dem Hauptbranch müssen eine SDK-49-Version haben.
+
+**Tablet nur für die App nutzen:** Einstellungen → Sicherheit → *Bildschirmfixierung* einschalten.
+Dann die App öffnen, die Übersichtstaste (Quadrat) drücken und auf der App-Karte die Stecknadel antippen.
+Lösen: Zurück- und Übersichtstaste gleichzeitig gedrückt halten.
+
 ## Funktionen
 
 **Team**

@@ -43,6 +43,8 @@ Docs: https://docs.expo.dev/eas/index.md
 
 ## Rules
 
+- Branch `tablet-android5` stays on **Expo SDK 49** on purpose: it targets an Android 5.1 tablet (API 22, MT6580, armeabi-v7a), and SDK 49 is the last Expo SDK with minSdk 21. Do not upgrade Expo/React Native on that branch, and only add libraries that have an SDK 49 version. Building it needs JDK 17 (Gradle 8.0.1). See README. The tablet's fonts lack 🏐 and 🛡: use `icons.ball` / `icons.reception` from `src/theme.ts` instead of typing those emoji.
+
 - If `ios/` and `android/` directories do not exist, they are generated (Continuous Native Generation). Never create or edit them by hand — configure native behavior in `app.json` and config plugins.
 - Expo Go only includes its bundled native modules. After adding a library with native code, the app needs a development build: `npx expo run:ios|android` locally, or `eas build --profile development`.
 - Prefer recommended Expo modules over third-party libraries, and check your available skills before adding dependencies. Docs: https://docs.expo.dev/versions/latest/index.md

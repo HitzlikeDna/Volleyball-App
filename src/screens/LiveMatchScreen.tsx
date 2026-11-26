@@ -16,7 +16,7 @@ import {
 } from '../logic/match';
 import { isKindAvailable, RALLY_KINDS, THEM_KINDS, US_KINDS } from '../logic/rallyKinds';
 import { usePlayerLookup, useStore } from '../state/store';
-import { colors, radius } from '../theme';
+import { colors, icons, radius } from '../theme';
 import type { MatchEvent, RallyKind, Team } from '../types';
 
 const MAX_TIMEOUTS = 2;
@@ -100,11 +100,11 @@ export function LiveMatchScreen({ onNextSet, onEditLineup }: { onNextSet: () => 
         <View style={[styles.serveInfo, { backgroundColor: set.serving === 'us' ? colors.usSoft : colors.themSoft }]}>
           {set.serving === 'us' ? (
             <Text style={styles.serveText}>
-              🏐 <Text style={styles.bold}>Wir schlagen auf:</Text> {playerLabel(lookup(server))}
+              {icons.ball} <Text style={styles.bold}>Wir schlagen auf:</Text> {playerLabel(lookup(server))}
             </Text>
           ) : (
             <Text style={styles.serveText}>
-              🛡️ <Text style={styles.bold}>Annahme.</Text> Bei Punkt rotieren wir – dann schlägt {playerLabel(lookup(nextServer(set)))} auf.
+              {icons.reception} <Text style={styles.bold}>Annahme.</Text> Bei Punkt rotieren wir – dann schlägt {playerLabel(lookup(nextServer(set)))} auf.
             </Text>
           )}
         </View>
@@ -289,7 +289,7 @@ function TeamScore({ name, score, sets, serving, color }: { name: string; score:
   return (
     <View style={styles.teamScore}>
       <Text style={styles.teamName} numberOfLines={1}>
-        {serving ? '🏐 ' : ''}
+        {serving ? `${icons.ball} ` : ''}
         {name}
       </Text>
       <Text style={[styles.score, { color: '#fff' }]}>{score}</Text>

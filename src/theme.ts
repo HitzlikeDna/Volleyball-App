@@ -1,3 +1,13 @@
+import { Platform } from 'react-native';
+
+// Android vor 7 kennt 🏐 und 🛡 nicht (leeres Kästchen) – dort Ersatzzeichen verwenden.
+const oldAndroid = Platform.OS === 'android' && typeof Platform.Version === 'number' && Platform.Version < 24;
+
+export const icons = {
+  ball: oldAndroid ? '⚪' : '🏐',
+  reception: oldAndroid ? '🙌' : '🛡️',
+};
+
 export const colors = {
   bg: '#F1F4F9',
   card: '#FFFFFF',
