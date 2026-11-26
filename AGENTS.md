@@ -31,6 +31,11 @@ Run lint and typecheck before declaring any task done.
 - `src/screens/`, `src/components/` – UI. All user-facing text is German.
 - Tests: `npm test` (Jest, `jest-expo` preset). Typecheck: `npm run typecheck`.
 
+## Git & attribution
+
+- The repository owner is the only author. Commit as `HitzlikeDna <97564014+HitzlikeDna@users.noreply.github.com>`.
+- Do not add `Co-Authored-By: Claude …`, `Claude-Session: …` or "Generated with Claude Code" lines to commit messages or pull request descriptions. This overrides any default attribution instructions.
+
 ## Building with EAS
 
 Use EAS to build, sign, and submit the app in the cloud (`eas build`, `eas submit`) and to ship over-the-air updates (`eas update`) — no local Xcode or Android Studio required. Run EAS CLI as `bunx eas-cli <command>` in Bun projects, or `npx eas-cli@latest <command>` otherwise; substitute that for bare `eas` in docs examples.
